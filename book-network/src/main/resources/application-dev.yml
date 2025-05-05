@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/book_social_network
-    username: postgres
-    password: password
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/book_social_network}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:hayet@123}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -14,10 +14,10 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   mail:
-    host: smtp.gmail.com
+    host: ${EMAIL_HOST_NAME}
     port: 465
-    username: email
-    password: password
+    username: ${EMAIL_USER_NAME}
+    password: ${EMAIL_PASSWORD}
     properties:
       mail:
         smtp:
@@ -29,17 +29,15 @@ spring:
 application:
   security:
     jwt:
-      secret-key: secret-key
+      secret-key: M5CjuJ8Lkj37dXM92Q6nzZC8H9LxkqF5mL8Dz6oLXM8
       expiration: 86400000 # a day
       refresh-token:
         expiration: 604800000 # 7 days
   mailing:
     frontend:
       activation-url: http://localhost:4200/activate-account
-
   file:
     uploads:
       photos-output-path: ./uploads
 server:
   port: 8087
-
