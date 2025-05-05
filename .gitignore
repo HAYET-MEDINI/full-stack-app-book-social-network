@@ -4,3 +4,7 @@
 *.iml
 *.ipr
 .uploads
+# Python
+__pycache__/
+*.pyc
+*.pyo
