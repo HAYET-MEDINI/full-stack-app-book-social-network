@@ -51,8 +51,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
+          context: ./book-network-ui
+          file: /docker/frontend/Dockerfile
           push: true
           tags: |
             docker.io/hayet22/book-network-ui:${{ github.sha }}
