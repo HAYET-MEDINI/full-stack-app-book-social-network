@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand logo" href="javascript:void(0)">
+      <i class="fas fa-book-open me-2"></i>Booki
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/books">
+            <i class="fas fa-home-alt me-1"></i>Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="my-books">
+            <i class="fas fa-book me-1"></i>My books
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="my-waiting-list">
+            <i class="fas fa-heart me-1"></i>Waiting list
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="my-returned-books">
+            <i class="fa-solid fa-truck-fast me-1"></i>Returns
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="my-borrowed-books">
+            <i class="fas fa-list-check me-1"></i>Borrowed
+          </a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center user-section">
+        <form class="d-flex search-form" role="search">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Find a book..." aria-label="Search">
+            <button class="btn search-btn" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+        <div class="user-greeting ms-3">
+          <span>Welcome </span>
+          <span class="username"></span>
+        </div>
+        <button class="btn logout-btn ms-2" (click)="logout()" title="Logout">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

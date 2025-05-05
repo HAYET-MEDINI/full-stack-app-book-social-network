@@ -1,0 +1,134 @@
+/* Container principal */
+.my-books-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* En-tête */
+.page-title {
+  color: #2c3e50;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.btn-add-book {
+  background-color: #3498db;
+  color: white !important;
+  border: none;
+  border-radius: 30px;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.btn-add-book:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.btn-add-book i {
+  font-size: 1.1rem;
+}
+
+/* Séparateur */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(52, 152, 219, 0.3), transparent);
+  margin: 1.5rem 0;
+}
+
+/* Grille de livres */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0.5rem;
+}
+
+/* Aucun livre */
+.no-books-placeholder {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.no-books-placeholder i {
+  opacity: 0.5;
+}
+
+/* Pagination */
+.pagination-container {
+  margin-top: 3rem;
+}
+
+.pagination {
+  gap: 0.5rem;
+}
+
+.page-link {
+  border-radius: 6px !important;
+  min-width: 40px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  color: #2c3e50;
+  transition: all 0.3s;
+}
+
+.page-link:hover {
+  background-color: #f8f9fa;
+  color: #3498db;
+  border-color: #3498db;
+}
+
+.page-link.active {
+  background-color: #3498db;
+  border-color: #3498db;
+  color: white;
+}
+
+.page-link.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+
+  .my-books-container {
+    padding: 1.5rem;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .d-flex.justify-content-between {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start !important;
+  }
+
+  .btn-add-book {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+  }
+}

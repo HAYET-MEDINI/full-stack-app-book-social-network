@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap');
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('/assets/library-background.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
+  padding: 2rem;
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    //background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1;
+  }
+
+  .login-card {
+    position: relative;
+    z-index: 2;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 460px;
+    width: 100%;
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    svg {
+      margin-bottom: 0.5rem;
+    }
+
+    .brand-name {
+      font-family: 'Nunito', sans-serif;
+      font-size: 2rem;
+      color: #003366; // bleu foncé
+      margin: 0;
+    }
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: #666;
+    font-size: 0.95rem;
+  }
+
+  .form-label {
+    font-weight: bold;
+    color: #003366;
+  }
+
+  .input-group-text {
+    background-color: #ffc107;
+    color: #000;
+    border: none;
+  }
+
+  .form-control {
+    border: 1px solid #ccc;
+
+    &:focus {
+      border-color: #003366;
+      box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.2);
+    }
+  }
+
+  .booki-logo {
+    font-family: 'Merriweather', serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #007bff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #002244;
+    }
+  }
+
+  .btn-outline-secondary {
+    border-color: #ccc;
+    background-color: white;
+    color: #555;
+
+    &:hover {
+      background-color: #f2f2f2;
+    }
+  }
+
+  .btn-login {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+  .btn-link {
+    color: #ffc107;
+    font-weight: bold;
+    padding-left: 0.3rem;
+  }
+
+  .alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    color: #842029;
+
+    i {
+      color: #842029;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<div class="login-wrapper">
+  <div class="overlay"></div>
+  <div class="card login-card">
+
+    <!-- Logo -->
+    <div class="text-center mb-4">
+      <div class="booki-logo">
+        <i class="fas fa-book-open me-2"></i>
+        <span>BOOKI</span>
+      </div>
+      <p class="subtitle">Connect with fellow book lovers</p>
+    </div>
+
+    <!-- Message d'erreur -->
+    <div class="alert alert-danger alert-dismissible fade show mb-3" *ngIf="errorMsg.length">
+      <button type="button" class="btn-close" (click)="errorMsg = []"></button>
+      <p *ngFor="let msg of errorMsg" class="mb-0">
+        <i class="fas fa-exclamation-circle me-2"></i>{{ msg }}
+      </p>
+    </div>
+
+    <!-- Formulaire -->
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fas fa-envelope"></i>
+        </span>
+        <input [(ngModel)]="authRequest.email" type="email" class="form-control" id="email" placeholder="name@example.com">
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="password" class="form-label">Password</label>
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="fas fa-lock"></i>
+        </span>
+        <input [(ngModel)]="authRequest.password" type="password" class="form-control" id="password" placeholder="••••••••">
+        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+          <i class="fas fa-eye"></i>
+        </button>
+      </div>
+    </div>
+
+    <button (click)="login()" class="btn btn-login">Sign In</button>
+
+    <div class="text-center pt-3">
+      <small class="text-muted">New to BOOKI?</small>
+      <button (click)="register()" class="btn btn-link">Create account</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="register-container">
+  <div class="register-card">
+    <!-- Logo -->
+    <div class="text-center mb-4">
+      <div class="booki-logo">
+        <i class="fas fa-book-open me-2"></i>
+        <span>BOOKI</span>
+      </div>
+      <h3 class="register-title">Join Our Community</h3>
+      <p class="register-subtitle">Start your literary journey with us</p>
+    </div>
+
+
+    <div class="alert alert-custom alert-danger" *ngIf="errorMsg.length" role="alert">
+      <button type="button" class="btn-close" (click)="errorMsg = []"></button>
+      <div *ngFor="let msg of errorMsg">
+        <i class="fas fa-exclamation-circle me-2"></i>{{ msg }}
+      </div>
+    </div>
+
+
+    <form class="register-form">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="firstname" class="form-label">First Name</label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="fas fa-user"></i>
+            </span>
+            <input [(ngModel)]="registerRequest.firstname" type="text" class="form-control" id="firstname" placeholder="John">
+          </div>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="lastname" class="form-label">Last Name</label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="fas fa-user-tag"></i>
+            </span>
+            <input [(ngModel)]="registerRequest.lastname" type="text" class="form-control" id="lastname" placeholder="Doe">
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="login" class="form-label">Email Address</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-envelope"></i>
+          </span>
+          <input [(ngModel)]="registerRequest.email" type="email" class="form-control" id="login" placeholder="name@example.com">
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="fas fa-lock"></i>
+          </span>
+          <input [(ngModel)]="registerRequest.password" type="password" class="form-control" id="password" placeholder="••••••••">
+          <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+        <small class="text-muted">At least 8 characters</small>
+      </div>
+
+      <div class="d-grid mb-4">
+        <button (click)="register()" type="button" class="btn btn-register">
+          <i class="fas fa-user-plus me-2"></i> Create Account
+        </button>
+      </div>
+
+      <div class="text-center pt-3 auth-footer">
+        <small>Already have an account?</small>
+        <button (click)="login()" class="btn btn-link">
+          Sign in
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

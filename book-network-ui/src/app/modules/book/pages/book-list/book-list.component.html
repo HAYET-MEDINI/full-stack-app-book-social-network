@@ -1,0 +1,130 @@
+<div class="books-container">
+  <div class="header-section">
+    <h3 class="page-title">
+      <i class="fas fa-book-open me-2"></i>Books List
+    </h3>
+
+    <div *ngIf="message"
+         class="alert alert-custom"
+         [class.alert-error]="level === 'error'"
+         [class.alert-success]="level === 'success'"
+         role="alert">
+      <i class="fas" [class.fa-exclamation-circle]="level === 'error'" [class.fa-check-circle]="level === 'success'"></i>
+      <p>{{ message }}</p>
+      <button type="button" class="btn-close" (click)="message = ''" aria-label="Close"></button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div *ngIf="bookResponse.content?.length; else noBooks" class="books-grid">
+    <app-book-card
+      *ngFor="let book of bookResponse.content"
+      [book]="book"
+      (borrow)="borrowBook($event)"
+      (details)="displayBookDetails($event)"
+    ></app-book-card>
+  </div>
+
+  <ng-template #noBooks>
+    <div class="no-books">
+      <i class="fas fa-book-dead"></i>
+      <p>No books found</p>
+    </div>
+  </ng-template>
+
+  <div class="pagination-container" *ngIf="(bookResponse.totalPages ?? 0) > 0">
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li class="page-item">
+          <a (click)="goToFirstPage()"
+             class="page-link"
+             [class.disabled]="page === 0"
+             title="First page">
+            <i class="fa-solid fa-angles-left"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a (click)="goToPreviousPage()"
+             class="page-link"
+             [class.disabled]="page === 0"
+             title="Previous page">
+            <i class="fa-solid fa-angle-left"></i>
+          </a>
+        </li>
+
+        <li class="page-item" *ngFor="let pageIndex of pages">
+          <a (click)="gotToPage(pageIndex)"
+             class="page-link"
+             [class.active]="page === pageIndex">
+            {{ pageIndex + 1 }}
+          </a>
+        </li>
+
+        <li class="page-item">
+          <a (click)="goToNextPage()"
+             class="page-link"
+             [class.disabled]="isLastPage"
+             title="Next page">
+            <i class="fa-solid fa-angle-right"></i>
+          </a>
+        </li>
+        <li class="page-item">
+          <a (click)="goToLastPage()"
+             class="page-link"
+             [class.disabled]="isLastPage"
+             title="Last page">
+            <i class="fa-solid fa-angles-right"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Chatbot Button -->
+  <button class="chatbot-toggle-btn" (click)="toggleChatbot()" title="Chat with Assistant">
+    <i class="fas fa-robot"></i>
+    <span class="chatbot-tooltip">Assistant</span>
+  </button>
+  <div class="chatbot-container" *ngIf="isChatbotOpen">
+    <div class="chatbot-header">
+      <div class="header-content">
+        <i class="fas fa-robot me-2"></i>
+        <h4>Assistant</h4>
+      </div>
+      <button class="chatbot-close-btn" (click)="toggleChatbot()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="chatbot-messages">
+      <div *ngFor="let msg of chatMessages" class="chat-message" [class.user-message]="msg.isUser" [class.bot-message]="!msg.isUser">
+        <div class="message-content">
+          <p>{{ msg.text }}</p>
+          <span class="message-timestamp">{{ getCurrentTime() }}</span>
+        </div>
+      </div>
+      <!-- Typing Indicator -->
+      <div class="typing-indicator" *ngIf="isTyping">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <!-- Suggested Questions -->
+    <div class="suggested-questions" *ngIf="showSuggestedQuestions">
+      <h5>Suggested Questions:</h5>
+      <ul>
+        <li *ngFor="let question of suggestedQuestions" (click)="selectSuggestedQuestion(question)">
+          {{ question }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="chatbot-input">
+      <input type="text" [(ngModel)]="chatInput" (keyup.enter)="sendMessage()" placeholder="Ask anything...">
+      <button (click)="sendMessage()">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>

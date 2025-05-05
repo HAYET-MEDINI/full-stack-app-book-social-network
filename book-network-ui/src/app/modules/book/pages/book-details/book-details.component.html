@@ -1,0 +1,96 @@
+<div class="p-2 book-detail-container">
+  <hr class="divider">
+  <div class="d-flex gap-4 book-main-section">
+    <div class="col-3 book-cover-wrapper">
+      <img class="rounded-3 book-cover-img shadow"
+           width="100%"
+           height="100%"
+           [src]="'data:image/jpg;base64,' + book.cover || 'https://source.unsplash.com/user/c_v_r/1900x800'"
+           alt="Book cover">
+    </div>
+    <div class="col-9 book-info-section">
+      <h2 class="book-title">
+        <i class="fa-solid fa-book text-primary"></i>&nbsp;{{ book.title }}
+      </h2>
+      <h4 class="book-author">
+        <i class="fa-solid fa-user-check text-info"></i>&nbsp;{{ book.authorName }}
+      </h4>
+      <h5 class="book-isbn">
+        <i class="fas fa-barcode text-secondary"></i>&nbsp;{{ book.isbn }}
+      </h5>
+      <h6 class="book-owner">
+        <i class="fas fa-user-tag text-muted"></i>&nbsp;{{ book.owner }}
+      </h6>
+      <div class="d-flex gap-3 align-items-center rating-section my-2">
+        <app-rating [rating]="book.rate || 0"></app-rating>
+        <span class="rating-value fw-bold">{{ book.rate | number:'1.1-1' }}</span>
+        <span class="rating-count text-muted">({{feedbacks.totalElements || 0}} avis)</span>
+      </div>
+      <hr class="divider">
+      <p class="book-synopsis">
+        {{ book.synopsis }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="feedback-container p-3">
+  <div *ngFor="let feedback of feedbacks.content" class="feedback-item mb-4 p-3 bg-light rounded-3">
+    <div class="d-flex gap-3 align-items-center feedback-header mb-2">
+      <app-rating [rating]="feedback.note || 0"></app-rating>
+      <strong class="feedback-note">{{feedback.note}}</strong>
+      <span class="feedback-date text-muted small ms-auto">
+        <!--{{feedback.createdAt | date:'dd/MM/yyyy'}}-->
+      </span>
+    </div>
+    <p class="feedback-comment mb-0">
+      {{feedback.comment}}
+    </p>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mt-4 pagination-wrapper">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination pagination-lg">
+      <li class="page-item">
+        <a (click)="goToFirstPage()"
+           class="page-link"
+           [class.disabled]="page === 0"
+           title="Première page">
+          <i class="fa-solid fa-angles-left"></i>
+        </a>
+      </li>
+      <li class="page-item">
+        <a (click)="goToPreviousPage()"
+           class="page-link"
+           [class.disabled]="page === 0"
+           title="Page précédente">
+          <i class="fa-solid fa-angle-left"></i>
+        </a>
+      </li>
+      <li class="page-item" *ngFor="let pageIndex of pages">
+        <a (click)="gotToPage(pageIndex)"
+           class="page-link"
+           [class.active]="page === pageIndex">
+          {{ pageIndex + 1 }}
+        </a>
+      </li>
+      <li class="page-item">
+        <a (click)="goToNextPage()"
+           class="page-link"
+           [class.disabled]="isLastPage"
+           title="Page suivante">
+          <i class="fa-solid fa-angle-right"></i>
+        </a>
+      </li>
+      <li class="page-item">
+        <a (click)="goToLastPage()"
+           class="page-link"
+           [class.disabled]="isLastPage"
+           title="Dernière page">
+          <i class="fa-solid fa-angles-right"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

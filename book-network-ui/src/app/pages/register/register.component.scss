@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap');
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('/assets/library-background.jpg'); // ajoute cette image dans ton projet
+  background-size: cover;
+  background-position: center;
+  padding: 2rem;
+}
+
+.register-card {
+  background-color: rgba(255, 255, 255, 0.96);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 600px;
+}
+
+.booki-logo {
+  font-family: 'Merriweather', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #007bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    color: #ffc107;
+    font-size: 2.3rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.register-title {
+  color: #007bff;
+  font-family: 'Merriweather', serif;
+  font-size: 1.8rem;
+  margin-top: 1rem;
+}
+
+.register-subtitle {
+  color: #666;
+  font-style: italic;
+}
+
+.input-group-text {
+  background-color: #ffc107;
+  color: #000;
+  border: none;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+}
+
+.btn-register {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+}
+
+.auth-footer button {
+  color: #ffc107;
+  font-weight: bold;
+  padding-left: 0.3rem;
+}
+
+.alert-custom {
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  color: #842029;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}

@@ -1,0 +1,16 @@
+div {
+  &.card {
+    max-height: 450px;
+    min-height: 450px;
+  }
+}
+i {
+  cursor: pointer;
+}
+.disabled {
+  pointer-events: none;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
