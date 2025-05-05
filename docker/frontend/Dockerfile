@@ -1,28 +1,31 @@
-# Build stage
-FROM maven:3.8.7-openjdk-18 AS build
-WORKDIR /build
-COPY book-network/pom.xml .
-RUN mvn dependency:go-offline
-COPY book-network/src ./src
-RUN mvn clean package -DskipTests
-
-# Runtime stage
-FROM amazoncorretto:17
-ARG PROFILE=dev
-ARG APP_VERSION=1.0.0
+# Étape de build
+FROM node:18 AS build-stage
 
 WORKDIR /app
-COPY --from=build /build/target/book-network-*.jar /app/
 
-EXPOSE 8087
+COPY package*.json ./
 
-ENV DB_URL=jdbc:postgresql://postgres-sql-bsn:5432/book_social_network
-ENV MAILDEV_URL=localhost
+# Configure npm pour éviter les timeouts
+RUN npm config set fetch-timeout 600000 \
+    && npm config set fetch-retries 5 \
+    && npm install
 
-ENV ACTIVE_PROFILE=${PROFILE}
-ENV JAR_VERSION=${APP_VERSION}
-ENV EMAIL_HOST_NAME=missing_host_name
-ENV EMAIL_USER_NAME=missing_user_name
-ENV EMAIL_PASSWORD=missing_password
+COPY . .
 
-CMD java -jar -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Dspring.profiles.active=${ACTIVE_PROFILE} -Dspring.datasource.url=${DB_URL} book-network-${JAR_VERSION}.jar
+# Construire l'application Angular
+RUN npm run build --prod
+
+# Étape de production
+FROM nginx:alpine
+
+# Supprimer la configuration par défaut de Nginx
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copier la configuration Nginx personnalisée
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Copier les fichiers statiques générés
+COPY --from=build-stage /app/dist/book-network-ui /usr/share/nginx/html
+
+# Exposer le port 80
+EXPOSE 80
