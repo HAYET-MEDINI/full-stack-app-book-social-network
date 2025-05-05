@@ -47,11 +47,11 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
-        working-directory: ./backend
+        working-directory: ./book-network
 
       - name: Run tests
         run: mvn test
-        working-directory: ./backend
+        working-directory: ./book-network
         env:
           SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/book_social_network
           SPRING_DATASOURCE_USERNAME: ${{ secrets.DB_USERNAME }}
@@ -81,8 +81,8 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
-          context: ./backend
-          file: ./backend/Dockerfile
+          context: .
+          file: ./docker/backend/Dockerfile
           push: true
           tags: |
             bsn/bsn:${{ github.sha }}
