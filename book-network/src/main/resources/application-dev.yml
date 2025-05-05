@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/book_social_network
     username: postgres
-    password: hayet@123
+    password: password
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -16,8 +16,8 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 465
-    username: medinihayet682@gmail.com
-    password: zkgj qcwi hpis kbjh
+    username: email
+    password: password
     properties:
       mail:
         smtp:
@@ -29,7 +29,7 @@ spring:
 application:
   security:
     jwt:
-      secret-key: M5CjuJ8Lkj37dXM92Q6nzZC8H9LxkqF5mL8Dz6oLXM8
+      secret-key: secret-key
       expiration: 86400000 # a day
       refresh-token:
         expiration: 604800000 # 7 days

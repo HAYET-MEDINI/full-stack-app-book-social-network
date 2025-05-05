@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { BookService } from './services/book.service';
-import {map} from "rxjs/operators";  // Assurez-vous que ce service existe dans votre projet
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
