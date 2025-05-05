@@ -23,6 +23,10 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ${{ github.workspace }}/book-network-ui/package-lock.json
 
+      - name: Debug directory
+        run: ls -R book-network-ui || dir book-network-ui
+        shell: bash
+
       - name: Install dependencies
         run: cd book-network-ui && npm ci
 
